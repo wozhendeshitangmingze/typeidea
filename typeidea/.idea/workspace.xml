@@ -74,7 +74,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="378" />
     <option name="y" value="47" />
     <option name="width" value="1364" />
@@ -167,7 +167,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27869000" />
+    <option name="totallyTimeSpent" value="28467000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="378" y="47" width="1364" height="763" extended-state="1" />
