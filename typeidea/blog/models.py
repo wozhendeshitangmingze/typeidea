@@ -10,7 +10,7 @@ class Category(models.Model):
     )
 
     name = models.CharField(max_length=50, verbose_name="名称")
-    stauts = models.PositiveIntegerField(default=STATUS_NORMAL,
+    status = models.PositiveIntegerField(default=STATUS_NORMAL,
         choices=STATUS_ITEMS, verbose_name="状态")
     is_nav = models.BooleanField(default=False, verbose_name="是否为导航")
     owner = models.ForeignKey(User, verbose_name="作者", on_delete=models.CASCADE)
@@ -18,6 +18,9 @@ class Category(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '分类'
+
+    def __str__(self):
+        return self.name
 
 
 class Tag(models.Model):
@@ -35,6 +38,9 @@ class Tag(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = "标签"
+
+    def __str__(self):
+        return self.name
 
 
 
@@ -60,3 +66,6 @@ class Post(models.Model):
     class Meta:
         verbose_name = verbose_name_plural = "文章"
         ordering = ['-id']
+
+    def __str__(self):
+        return self.title
