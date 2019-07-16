@@ -1,0 +1,16 @@
+{% extends "./base.html" %}
+{% load comment_block %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block main %}
+{% if post %}
+<h1>{{ post.title }}</h1>
+<div>
+    <span>作者：<a href="{% url 'author' post.owner.id %}">{{ post.owner.username }}</a></span>
+    <span>分类：<a href="{% url 'category-list' post.category.id %}">{{ post.category.name }}</a></span>
+    <span>创建时间：{{ post.created_time }}</span>
+</div>
+<hr/>
+<p>{{ post.content }}</p>
+    {% comment_block request.path %}
+{% endif %}
+{% endblock %}
