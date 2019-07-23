@@ -10,7 +10,7 @@
     <span>创建时间：{{ post.created_time }}</span>
 </div>
 <hr/>
-<p>{{ post.content }}</p>
+<p>{% autoescape off %}{{ post.content_html }}{% endautoescape %}</p>
     {% comment_block request.path %}
 {% endif %}
 {% endblock %}

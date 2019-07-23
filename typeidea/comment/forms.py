@@ -1,8 +1,16 @@
+import mistune
 from django import forms
 from .models import Comment
 
 
 class CommentForm(forms.ModelForm):
+    def clean_content(self):
+        content = self.cleaned_data.get('content')
+        if len(content) < 10:
+            raise forms.ValidationError('内容长度太短')
+        content = mistune.Markdown(content)
+        return content
+
     class Meta:
         model = Comment
         fields = ('nickname', 'email', 'website', 'content')
@@ -11,12 +19,6 @@ class CommentForm(forms.ModelForm):
             'email': 'E-mail',
             'website': '网站',
             'content': '内容',
-        }
-        max_length = {
-            'nickname': 50,
-            'email': 50,
-            'website': 100,
-            'content': 500,
         },
         widgets = {
             'nickname': forms.widgets.Input(
@@ -33,8 +35,3 @@ class CommentForm(forms.ModelForm):
             )
         }
 
-        def clean_content(self):
-            content = self.cleaned_data.get('content')
-            if len(content) < 10:
-                raise forms.ValidationError('内容长度太短')
-            return content
