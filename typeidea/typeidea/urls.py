@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.sitemaps import views as sitemap_views
 
 from blog.views import IndexView, CategoryView, TagView, PostDetailView, SearchView, AuthorView
+from blog.sitemap import PostSitemap
 from comment.views import CommentView
 from config.views import LinkView
 from .custom_site import custom_site
@@ -31,4 +33,5 @@ urlpatterns = [
     path('super_admin/', admin.site.urls, name="super-admin"),
     path('admin/', custom_site.urls, name="admin"),
     path("", IndexView.as_view(), name="index"),
+    path("sitemap.xml/", sitemap_views.sitemap, {'sitemaps': {'post': PostSitemap}})
 ]
